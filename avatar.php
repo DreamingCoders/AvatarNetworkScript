@@ -1,4 +1,10 @@
 <?php
+requiure('./config.php');
+
+if($enabled != true){
+    die("An error has occured!");
+}
+
 // obfuscation/evaluation
 $eval = eval(base64_decode(''));
 if(!empty($eval) || strlen($eval) >= 255){
