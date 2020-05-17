@@ -42,7 +42,18 @@ if($maintenance == null || $maintenance == "enabled"){
 if(!file_exists('config.php')){
   $staticContent = null;
 }else{
-  $staticContent = "Hello World!";
+  $level1 = "<form action='#' method='POST'>
+<input type='text' class='form-control' name='siteName' placeholder='Website name'>
+<input type='text' class='form-control' name='siteURL' placeholder='Website URL'>
+
+<input type='submit' class='btn btn-primary' name='step2' value='Next step'>
+  </form>
+
+";
+  $level2 = "World ";
+  $level3 = "ANS";
+
+  $staticContent = $level1;
 }
 
 // website guts
@@ -84,11 +95,16 @@ body{
 </div>
 </nav>
 
+<div class="alert alert-primary text-center">
+Welcome to AvatarNetworkScript Installation!
+</div>
+
 <div style="margin-bottom: 75px;"></div>
 
 <div class="app">
 
     <div class="container">
+    
         <div class="card">
             <div class="card-body">
             <h2><?=$serverName?> Installation</h2>
@@ -101,6 +117,29 @@ body{
                   ?>
                   <p><?=$staticContent?></p>
                   <?php
+    if(isset($_POST['step2'])){
+      $siteNamePost = htmlentities($_POST['siteName']);
+      $siteURLPost = htmlentities($_POST['siteURL']);
+
+      if(empty($siteNamePost)){
+        $error = "Site name cannot be empty!";
+      }
+      if(empty($siteURLPost)){
+        $error = "Site URL cannot be empty!";
+      }
+
+      if(isset($error) || !empty($error)){
+        echo "<div class='alert alert-danger text-center'>".$error."</div>";
+      }else{
+
+  ?>
+<div class="spinner-border" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+  <?php
+}
+    }
+
                 }
             ?>
             </div>
@@ -108,12 +147,6 @@ body{
     </div>
 
 </div>
-
-    <div class="card">
-        <div class="card-body">
-<div class="footer-text">Copyright &copy; 2020</div>
-        </div>
-    </div>
 
 <script
   src="https://code.jquery.com/jquery-3.5.1.min.js"
