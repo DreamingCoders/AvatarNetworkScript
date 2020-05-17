@@ -1,15 +1,18 @@
 <?php
-requiure('./config.php');
+require('./config.php');
 
 if($enabled != true){
     die("An error has occured!");
 }
 
 // obfuscation/evaluation
-$eval = eval(base64_decode(''));
-if(!empty($eval) || strlen($eval) >= 255){
+$eval = eval(base64_decode('JGVuY3J5cHRpb24gPSAic2VjcmV0IGVuY3J5cHRpb24iOw=='));
+if(!empty($eval) || strlen($eval) >= 15){
     echo $eval;
-}else{
+}else if($eval != "secret encryption"){
+  //echo $eval;
+      //echo"Pseudo weird. A problem maybe?";
+    }else{
     die("Failure to evaluate.");
 }
 
@@ -32,10 +35,16 @@ $serverRoot = $_SERVER['DOCUMENT_ROOT'];
 $maintenance = null;
 
 if($maintenance == null || $maintenance == "enabled"){
-    die(header("Location: ".$serverURL.""))
+  //die("Maintenance");
+    //die(header("Location: ".$serverURL.""));
 }
 
-$staticContent = null;
+if(!file_exists('config.php')){
+  $staticContent = null;
+}else{
+  $staticContent = "Hello World!";
+}
+
 // website guts
 ?>
 <head>
@@ -47,8 +56,9 @@ $staticContent = null;
 
 <body>
 <style>
-.body{
+body{
     font-family: 'Roboto', sans-serif !important;
+    background-color: #e4e3e8 !important;
 }
 </style>
 
@@ -74,6 +84,8 @@ $staticContent = null;
 </div>
 </nav>
 
+<div style="margin-bottom: 75px;"></div>
+
 <div class="app">
 
     <div class="container">
@@ -85,6 +97,10 @@ $staticContent = null;
             ?>
             <p>This page is currently unavailable.</p>
             <?php
+                }else{
+                  ?>
+                  <p><?=$staticContent?></p>
+                  <?php
                 }
             ?>
             </div>
