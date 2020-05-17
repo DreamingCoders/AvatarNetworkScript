@@ -42,24 +42,99 @@ if($maintenance == null || $maintenance == "enabled"){
 if(!file_exists('config.php')){
   $staticContent = null;
 }else{
-  $level1 = "<form action='#' method='POST'>
+
+  if(isset($GET['step'])){
+  $steps = htmlentities($_GET['step']);
+  }else{
+    $steps = null;
+  }
+
+  if($steps = "1" || !isset($steps)){
+  $level1 = "<h4>Step One</h4>
+  <form action='#' method='POST'>
 <input type='text' class='form-control' name='siteName' placeholder='Website name'>
 <input type='text' class='form-control' name='siteURL' placeholder='Website URL'>
 
 <input type='submit' class='btn btn-primary' name='step2' value='Next step'>
-  </form>
+  </form>";
+  }
 
-";
-  $level2 = "World ";
-  $level3 = "ANS";
+  if($steps = "2"){
+  $level2 = "<h4>Step Two</h4>
+  <form action='#' method='POST'>
+<input type='text' class='form-control' name='siteName' placeholder='Website name'>
+<input type='text' class='form-control' name='siteURL' placeholder='Website URL'>
 
+<input type='submit' class='btn btn-primary' name='step3' value='Next step'>
+  </form>";
+  }
+
+  if($steps = "3"){
+  $level3 = "<h4>Step Three</h4>
+  <form action='#' method='POST'>
+<input type='text' class='form-control' name='siteName' placeholder='Website name'>
+<input type='text' class='form-control' name='siteURL' placeholder='Website URL'>
+
+<input type='submit' class='btn btn-primary' name='step3' value='Next step'>
+  </form>";
+  }
+
+if(isset($_GET['step'])){
+
+  $steps = htmlentities($_GET['step']);
+
+ if($steps == "2"){
+  $staticContent = $level2;
+ }
+ if($steps == "3"){
+  $staticContent = $level3;
+ }
+
+}else{
+  $steps == "1"; // predefined for stepsRelocate
   $staticContent = $level1;
 }
 
+if(!isset($staticContent)){
+  $steps == "1"; // predefined for stepsRelocate
+  //$staticContent = "Error";
+  $staticContent = $level1;
+}
+
+}
+
+/*
+if($steps){
+  //echo"<h1>Current step - ".$steps."</h1><br>";
+  //echo"<h5>Next step - ".$steps++."</h5>";
+
+  for($i = 0){
+    $i++
+  $inc = $steps + $i;
+$stepRelocate = "<meta http-equiv='refresh' content='2;url=avatar.php?step=".$inc."'>";
+  }
+
+}
+*/
+
+if($steps){
+
+  $nextStep = $steps + 1;
+$stepRelocate = "<meta http-equiv='refresh' content='2;url=avatar.php?step=".$nextStep."'>";
+  }
+
 // website guts
 ?>
+<!doctype html>
+<html>
 <head>
 <title>AvatarNetworkScript</title>
+
+<meta charset="UTF-8">
+  <meta name="description" content="AvatarNetworkScript Installation">
+  <meta name="keywords" content="Avatar, AvatarNetworkScript, ANS">
+  <meta name="author" content="SoulAffinity">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -115,7 +190,7 @@ Welcome to AvatarNetworkScript Installation!
             <?php
                 }else{
                   ?>
-                  <p><?=$staticContent?></p>
+                  <div id="installationContent"><?=$staticContent?></div>
                   <?php
     if(isset($_POST['step2'])){
       $siteNamePost = htmlentities($_POST['siteName']);
@@ -128,18 +203,19 @@ Welcome to AvatarNetworkScript Installation!
         $error = "Site URL cannot be empty!";
       }
 
+$spinner = '<br><div class="spinner-border" role="status">
+<span class="sr-only">Loading...</span>
+</div>';
+
       if(isset($error) || !empty($error)){
-        echo "<div class='alert alert-danger text-center'>".$error."</div>";
+        echo "<div class='alert alert-danger text-center'>".$error . $spinner."</div>";
       }else{
 
-  ?>
-<div class="spinner-border" role="status">
-  <span class="sr-only">Loading...</span>
-</div>
-  <?php
-}
-    }
+echo $spinner . $stepRelocate;
 
+      }
+    
+    }
                 }
             ?>
             </div>
@@ -154,4 +230,6 @@ Welcome to AvatarNetworkScript Installation!
   crossorigin="anonymous"></script>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js">
+
 </body>
+</html>
