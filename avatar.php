@@ -371,9 +371,12 @@ echo $spinner . $stepRelocate;
 
 if(isset($_POST['finish'])){
 
+  $finish = true;
   $error = null;
   //if(isset($error) || !empty($error)){
+    if(!isset($error)){ //if no errors, proceed with finalizing installation
     echo "<div class='alert alert-success text-center'>Installing your new website! ". $spinnerSuccess . $refresh10."</div>";
+    }
   //}
 
 }
