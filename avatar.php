@@ -155,7 +155,7 @@ if(!file_exists('config.php')){
 if(isset($steps)){
 
  if($steps == "2"){
-     if(isset($stepFinish2) || isset($_SESSION['stepFinish2'])){
+     if(!isset($stepFinish2) || !isset($_SESSION['stepFinish2'])){
          echo"<meta http-equiv='refresh' content='0;url=avatar.php?step=1'>";
      $staticContent = $level1;
      }else{
