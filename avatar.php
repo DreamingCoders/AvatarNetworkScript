@@ -155,13 +155,14 @@ if(!file_exists('config.php')){
 if(isset($steps)){
 
  if($steps == "2"){
-  $staticContent = $level2;
- }
- if($steps == "3"){
      if(isset($stepFinish2) || isset($_SESSION['stepFinish2'])){
          echo"<meta http-equiv='refresh' content='0;url=avatar.php?step=1'>";
      $staticContent = $level1;
+     }else{
+  $staticContent = $level2;
      }
+ }
+ if($steps == "3"){
   $staticContent = $level3;
  }
  if($steps == "4"){
@@ -335,7 +336,7 @@ footer .footer-em{
                   <div id="installationContent"><?=$staticContent?></div>
 
 <!--
-                  <div id="ajax">
+<div id="ajax">
   <button class="btn btn-primary" id="action-button">Click me to load info!</button>
   <div id="info"></div>
 </div>
