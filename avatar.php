@@ -1,5 +1,6 @@
 <?php
 require('./config.php');
+    session_start(); // to check if get requests were used with session blocks
 
 if($enabled != true){
     die("An error has occured!");
@@ -157,6 +158,10 @@ if(isset($steps)){
   $staticContent = $level2;
  }
  if($steps == "3"){
+     if(isset($stepFinish2) || isset($_SESSION['stepFinish2']){
+         echo"<meta http-equiv='refresh' content='0;url=avatar.php?step=1'>";
+     $staticContent = $level1;
+     }
   $staticContent = $level3;
  }
  if($steps == "4"){
@@ -376,6 +381,8 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1
       if(isset($error) || !empty($error)){
         echo "<div class='alert alert-danger text-center'>".$error . $spinner . $refresh."</div>";
       }else{
+          
+          $_SESSION['stepFinish2'] = true;
 
 echo $spinner . $stepRelocate;
 
