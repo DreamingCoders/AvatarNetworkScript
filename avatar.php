@@ -158,7 +158,7 @@ if(isset($steps)){
   $staticContent = $level2;
  }
  if($steps == "3"){
-     if(isset($stepFinish2) || isset($_SESSION['stepFinish2']){
+     if(isset($stepFinish2) || isset($_SESSION['stepFinish2'])){
          echo"<meta http-equiv='refresh' content='0;url=avatar.php?step=1'>";
      $staticContent = $level1;
      }
