@@ -305,7 +305,7 @@ footer .footer-em{
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/">Home</a></li>
     <li class="breadcrumb-item"><a href="#">Installation</a></li>
-    <li class="breadcrumb-item" <?=$stepActive?>><?=$stepPage?></li>
+    <li class="breadcrumb-item" <?=$stepActive?><?=$stepPage?></li>
   </ol>
 </nav>
 
