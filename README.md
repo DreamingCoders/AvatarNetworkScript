@@ -1,6 +1,7 @@
 # AvatarNetworkScript
 2D Avatar Network Script
 
+Preview: https://ans.net/demo/
 Basics of an avatar network script in PHP.
 I made the basics of the installer and I'd like to have other people work on this.
 
