@@ -149,6 +149,7 @@ if(!file_exists('config.php')){
             <form action='#' method='POST'>
   <input type='email' class='form-control' name='email' placeholder='Email Address'>
   </form>";
+    }
 
 if(isset($_GET['step'])){
 
