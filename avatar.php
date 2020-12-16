@@ -14,7 +14,7 @@ if(!empty($eval) || strlen($eval) >= 15){
       //echo"Pseudo weird. A problem maybe?";
     }else{
     die("Failure to evaluate.");
-}
+    }
 
 $serverIP = null;
 
@@ -64,7 +64,7 @@ if(!file_exists('config.php')){
     $intro2 = "<div id='introtwo' style='display: none;'>";
   }
 
-  if($steps = "1" || !isset($steps)){
+  if($steps == "1" || !isset($steps)){
   $level1 = $intro . $intro2 ."
   <h4>Step One</h4>
   <form action='#' method='POST'>
@@ -96,7 +96,7 @@ if(!file_exists('config.php')){
 </div>";
   }
 
-  if($steps = "2"){
+  if($steps == "2"){
   $level2 = "<h4>Step Two</h4>
   <form action='#' method='POST'>
   <div class='form-group'>
@@ -109,7 +109,7 @@ if(!file_exists('config.php')){
   </form>";
   }
 
-  if($steps = "3"){
+  if($steps == "3"){
   $level3 = "<h4>Step Three</h4>
   <form action='#' method='POST'>
 <input type='text' class='form-control' name='siteName' placeholder='Credit Card Number'>
@@ -128,7 +128,7 @@ if(!file_exists('config.php')){
   </form>";
   }
 
-  if($steps = "4"){
+  if($steps == "4"){
     $level4 = "<h4>Step Four</h4>
     <form action='#' method='POST'>
   <input type='text' class='form-control' name='siteName' placeholder='Admin username'>
@@ -144,7 +144,7 @@ if(!file_exists('config.php')){
     </form>";
     }
    
-    if($steps = "5"){
+    if($steps == "5"){
         $level5 = "<h5>Enter your email</h5>
             <form action='#' method='POST'>
   <input type='email' class='form-control' name='email' placeholder='Email Address'>
@@ -166,6 +166,7 @@ if(isset($_GET['step'])){
  }
  if($steps == "5"){
      $staticContent = $level5;
+ }
  if($steps >= "6"){
   echo"<meta http-equiv='refresh' content='0;url=avatar.php?step=1'>";
  }
@@ -198,7 +199,7 @@ $stepRelocate = "<meta http-equiv='refresh' content='2;url=avatar.php?step=".$in
 }
 */
 
-if($steps || $steps <= 5){
+if($steps || $steps <= 6){
 
   $nextStep = $steps + 1;
 $refresh = "<meta http-equiv='refresh' content='1'>";
