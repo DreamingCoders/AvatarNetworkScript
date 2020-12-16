@@ -39,15 +39,15 @@ if($maintenance == null || $maintenance == "enabled"){
     //die(header("Location: ".$serverURL.""));
 }
 
-if(!file_exists('config.php')){
-  $staticContent = null;
-}else{
-
-  if(isset($GET['step'])){
+if(isset($_GET['step'])){
   $steps = htmlentities($_GET['step']);
   }else{
     $steps = null;
   }
+
+if(!file_exists('config.php')){
+  $staticContent = null;
+}else{
   
   if(isset($_COOKIE["user"])) {
 
@@ -151,9 +151,7 @@ if(!file_exists('config.php')){
   </form>";
     }
 
-if(isset($_GET['step'])){
-
-  $steps = htmlentities($_GET['step']);
+if(isset($steps)){
 
  if($steps == "2"){
   $staticContent = $level2;
@@ -174,7 +172,9 @@ if(isset($_GET['step'])){
 }else{
   $steps == "1"; // predefined for stepsRelocate
   $staticContent = $level1;
-  echo"<meta http-equiv='refresh' content='0;url=avatar.php?step=1'>";
+  if($steps != "1"){
+  //echo"<meta http-equiv='refresh' content='0;url=avatar.php?step=1'>";
+  }
 }
 
 if(!isset($staticContent)){
@@ -199,7 +199,7 @@ $stepRelocate = "<meta http-equiv='refresh' content='2;url=avatar.php?step=".$in
 }
 */
 
-if($steps || $steps <= 6){
+if($steps || $steps <= 6 && $steps > 1){
 
   $nextStep = $steps + 1;
 $refresh = "<meta http-equiv='refresh' content='1'>";
@@ -207,6 +207,11 @@ $refresh10 = "<meta http-equiv='refresh' content='10'>";
 
 $stepRelocate = "<meta http-equiv='refresh' content='2;url=avatar.php?step=".$nextStep."'>";
   }else{
+    $nextStep = $steps + 2;
+    $refresh = "<meta http-equiv='refresh' content='1'>";
+    $refresh10 = "<meta http-equiv='refresh' content='10'>";
+    
+    $stepRelocate = "<meta http-equiv='refresh' content='2;url=avatar.php?step=".$nextStep."'>";
 
     /*
     $stepRelocate = "<meta http-equiv='refresh' content='0;url=avatar.php?step=1'>";
