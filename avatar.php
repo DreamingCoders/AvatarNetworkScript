@@ -143,6 +143,12 @@ if(!file_exists('config.php')){
   <input type='submit' class='btn btn-success' name='finish' value='Finish'>
     </form>";
     }
+   
+    if($steps = "5"){
+        $level5 = "<h5>Enter your email</h5>
+            <form action='#' method='POST'>
+  <input type='email' class='form-control' name='email' placeholder='Email Address'>
+  </form>";
 
 if(isset($_GET['step'])){
 
@@ -157,7 +163,9 @@ if(isset($_GET['step'])){
  if($steps == "4"){
   $staticContent = $level4;
  }
- if($steps >= "5"){
+ if($steps == "5"){
+     $staticContent = $level5;
+ if($steps >= "6"){
   echo"<meta http-equiv='refresh' content='0;url=avatar.php?step=1'>";
  }
 
