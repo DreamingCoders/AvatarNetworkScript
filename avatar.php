@@ -154,7 +154,7 @@ if(!file_exists('config.php')){
 
 if(isset($steps)){
 
- if($steps == "2"){
+ if($steps = "2"){
      echo"t";
      //if(!isset($stepFinish2) || !isset($_SESSION['stepFinish2'])){
      if(!isset($stepFinish2)){
